@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Security.Claims;
 using webAPI.JWTTOken.Models;
 
@@ -9,6 +11,9 @@ namespace webAPI.JWTTOken.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        [HttpGet]
+        [Route("Admins")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminEndPoint() 
         {
             var CurrentUser = GetCurrentUser();
